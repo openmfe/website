@@ -1,0 +1,15 @@
+{% macro teasers(list) %}
+    {%- for slug, item in list.children -%}
+        <h2><a href="{{ item.permalink }}">{{ item.title }}</a></h2>
+        <p>{{ item.excerpt }}</p>
+    {%- endfor -%}
+{% endmacro %}
+
+{% macro colors() %}
+    {% for name, value in colors %}
+    <div style="margin: 1rem 0 0">
+        <span style="display: inline-block; height: 30px; width: 30px; background: {{ value }}; border: 1px solid #000;"></span>
+        {{ name }}
+    </div>
+    {% endfor %}
+{% endmacro %}

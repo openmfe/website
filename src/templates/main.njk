@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>{% block tpl_title %} OpenMFE · {{ title }}{% endblock %}</title>
+        {% block tpl_head %}
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link rel="stylesheet" href="/_assets/css/main.css">
+            <script src="/_assets/js/main.js" defer></script>
+        {% endblock %}
+    </head>
+    <body>
+
+        <div class="page">
+            {% block tpl_header %}
+            <header>
+                <div class="wrapper">
+                    <p>
+                        <img src="/_assets/images/logo.svg" height="43" width="30">
+                        <span>OpenMFE</span>
+
+                    </p>
+                    <ul class="main">
+                       <li>
+                        <a href="/">Home</a>
+                       </li>
+                        {% for idx, nav in navigation %}
+
+                        <li tabindex="-1"{% if nav.permalink === page.url %} class="current"{% endif %}>
+                            <a href="{{ nav.permalink }}">{{ nav.title }}</a>
+
+                            {% if nav.children | length %}
+                            <ul>
+                                {% for i, pg in nav.children %}
+                                <li tabindex="-1"{% if pg.permalink === page.url %} class="current"{% endif %}>
+                                    <a href="{{ pg.permalink }}">{{ pg.title }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <p class="social">
+                        <a href="https://github.com/openmfe/" title="Github repository">Github repository</a>
+                    </p>
+                </div>
+            </header>
+            {% endblock %}
+
+            {% block tpl_main %}
+            <main class="{% if class %}{{ class }}{% endif %}">
+                <div class="wrapper">
+                    {{ content | safe }}
+                </div>
+            </main>
+            {% endblock %}
+
+            {% block tpl_footer %}
+            <footer>
+            </footer>
+            {% endblock %}
+        </div>
+    </body>
+</html>
