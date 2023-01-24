@@ -49,7 +49,7 @@
             {% endblock %}
 
             {% block tpl_main %}
-            <main class="{% if class %}{{ class }}{% endif %}">
+            <main{% if class %} class="{{ class }}"{% endif %}>
                 <div class="wrapper">
                     {{ content | safe }}
                 </div>

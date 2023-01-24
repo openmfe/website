@@ -1,0 +1,133 @@
+header {
+    flex: 0 1 auto;
+    font-size: var(--base-font-size);
+    background: #222;
+
+    .wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    a,
+    a:link,
+    a:visited {
+        display: block;
+        color: #eee;
+        cursor: pointer;
+        padding: 1rem;
+        box-shadow: none;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:focus {
+        text-decoration: underline;
+        box-shadow: none;
+    }
+
+    p, ul, li {
+        margin: 0;
+        padding: 0;
+    }
+
+    p {
+        display: flex;
+        align-items: center;
+
+        img {
+            display: inline-block;
+            margin-right: 0.6rem;
+        }
+
+        span {
+            font-weight: bold;
+            color: #fff;
+        }
+    }
+
+    li {
+        list-style: none;
+    }
+
+    ul.main {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex: 1 0 auto;
+        margin-left: 2rem;
+
+        >li {
+            margin: 0;
+            position: relative;
+
+            >a::after {
+                --menu-chevron-size: 0.7rem;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                display: none;
+                content: "";
+                width: 0;
+                height: 0;
+                border-top: none;
+                border-left: var(--menu-chevron-size) solid transparent;
+                border-right: var(--menu-chevron-size) solid transparent;
+                border-bottom: var(--menu-chevron-size) solid var(--color-theme-base-lighter);
+                margin-top: 0.4rem;
+            }
+
+            ul {
+                background: var(--color-theme-base-lighter);
+                border: 1px solid var(--color-theme-base-light);
+                border-top: 0;
+                position: absolute;
+                z-index: 10;
+                display: none;
+
+                li {
+                    margin: 0 1rem 0 0;
+                    white-space: nowrap;
+
+                    a {
+                        color: var(--color-text-link);
+                        padding: 0.5rem 1rem;
+                        text-shadow: none;
+                    }
+                }
+
+                li:first-child {
+                    margin-top: 0.5rem;
+                }
+
+                li:last-child {
+                    margin-bottom: 0.5rem;
+                }
+            }
+
+            &:hover {
+                a:not(:last-child)::after {
+                    display: block;
+                }
+
+                ul {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .social {
+        a {
+            text-indent: -9999px;
+            display: block;
+            height: 22px;
+            width: 22px;
+            padding: 0;
+            background: url(/_assets/images/github.svg) no-repeat center center;
+            background-size: contain;
+        }
+    }
+}

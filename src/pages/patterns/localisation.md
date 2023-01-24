@@ -36,7 +36,7 @@ But before we start playing, it is important to understand a few technical detai
 
 Here’s an example of such a file:
 
-```
+```po
 msgid ""
 msgstr ""
 "Language: de_DE\n"
@@ -102,7 +102,7 @@ l10n.n("1 child", "%s children", number).replace("%s", number)
 
 You see that the plural form contains a placeholder. This is where the actual number is later injected via the `.replace()` function which is necessary as the translation function is not aware of placeholders. In your message catalog, this will give you the following entry.
 
-```
+```po
 msgid "1 child"
 msgid_plural "%s children"
 msgstr[0] "1 Kind"
