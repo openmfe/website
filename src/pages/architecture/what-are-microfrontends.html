@@ -10,17 +10,70 @@ priority: 10
 
 <p>This may not sound impressive, but it is a very powerful concept to build large-scale web applications in a “vertical” way where deliverable artefacts are aligned with business logic rather than technology. The opposite would be a “layered” architecture where artefacts are aligned with technical concerns such as frontend, backend, database.</p>
 
-<section class="side-by-side">
-    <div class="left mfe"> <current-weather lat="50.8560604" lon="6.1558148"></current-weather>
-        <!-- <script src="http://127.0.0.1:9081/main.js" async></script> -->
+<p>But before we dive any deeper, let’s have a look at a real-world microfrontend. On the left-hand side, you see a microfrontend that displays the current weather in the <a href="https://en.wikipedia.org/wiki/Aachen">city of Aachen</a>. On the right-hand side is the actual, literal code it takes to embed this microfrontend on <strong>any</strong> webpage.</p>
+
+<section class="group">
+    <div class="mfe">
+        <current-weather lat="50.776334" lon="6.083706"></current-weather>
         <script src="https://dgyodetmk4834.cloudfront.net/main.js" async></script>
     </div>
-    <div class="right">
-        <h2>What Are Microfrontends?</h2>
-        <!-- TODO: Dedicated page under Architecture -->
-
-        <p>Microfrontends are a way to build large web applications in a modular way. Each microfrontend is an independent solution for a “business concern”, meaning that it is a self-contained, small application which can be integrated into a web page.</p>
-
-        <p>This may not sound impressive, but it is a very powerful concept to build large-scale web applications in a “vertical” way where deliverable artefacts are aligned with business logic rather than technology. The opposite would be a “layered” architecture where artefacts are aligned with technical concerns such as frontend, backend, database.</p>
+    <div>
+{% markdown %}
+```html
+<current-weather
+    lat="50.776334"
+    lon="6.083706"
+></current-weather>
+<script
+    src="https://dgyodetmk4834.cloudfront.net/main.js"
+    async
+></script>
+```
+{% endmarkdown %}
     </div>
 </section>
+
+<p>As you can see, the web component is delivered by a third-party domain. This is not a problem; in fact, it is a huge benefit of this approach: Teams can maintain their own infrastructure and compose microfrontends in the browser. (That said, there are other microfrontend approaches which rely on server-side or build-time composition.)</p>
+
+<p>You might also wonder what the <code>&lt;current-weather&gt;</code> HTML tag and its attributes <code>lat</code> and <code>lon</code> are. This is a so-called <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements">custom element</a>, meaning that we have defined our own custom HTML tag with custom behaviour. This works similar to the better known <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a> tag; basically it is a complex element with embedded user interface logic.</p>
+
+<h2>Building Websites With Microfrontends</h2>
+
+<p>Microfrontends can be used stand-alone, but usually they are combined into larger applications, such as a sales platform. In the following graphic, each of the blue-bordered boxes is one microfrontend: The main ones provide search, filter and result capabilities for a flights shop, but even the smaller ones at the top (site search, favourites, shopping cart) are microfrontends in their own rights.</p>
+
+<div class="image">
+    <img src="/_assets/images/mfe-page.webp" alt="Microfrontends on a page">
+</div>
+
+<p>By “slicing” the website into multiple independent blocks, capabilities can be delivered in parallel. As microfrontends are loosely coupled and expose a clearly defined interface contract to their environment, there is no risk of breaking the platform with this decentralised approach.</p>
+
+<h2>Horizontal vs. Vertical Architecture</h2>
+
+<p>It is important to note that microfrontends are far more than UI elements on web pages. In fact, a microfrontend is a self-contained full-stack web application which usually, despite its name, also contains backend and persistence functionality. Together with other microfrontends, it is integrated on web pages, which in such an architecture act as mere integration points.</p>
+
+<div class="image">
+    <img src="/_assets/images/verticalisation.webp" alt="Horizontal to Vertical">
+</div>
+
+<p>This architectural style is called “verticalisation”: Instead of building large web applications in layers that are driven by technical concerns, they are build in full-stack components defined by a logical scope. As such, microfrontends are related to microservices which also are self-contained and part of a loosely coupled ecosystem as well. Even more, they extend the paradigm of service-based decoupling to the frontend of a web application.</p>
+
+
+<h2>The OpenMFE Specification</h2>
+
+<p>In order to achieve the objectives of loose coupling and evolvability, we need rules that govern the interoperability of microfrontends without taking away the freedom of teams to build their microfrontends in the best possible way. This is why we have developed the <a href="/architecture/specification/">OpenMFE specification</a> which governs how microfrontends need to behave at runtime. It contains general provisions that describe how encapsulation is achieved as well as rules for prerendering and semantic data. Finally, it contains a formalised way to describe the interfaces of a microfrontend in a manifest file.</p>
+
+<p>There are <a href="https://micro-frontends.org/" target="_blank">different ways of building</a> a microfrontend-based website. OpenMFE follows the <em>client-side</em> integration approach, meaning that we see microfrontends as <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">web components</a> which are integrated into a web page in the browser. We have chosen this approach mainly for two reasons: First, it allows a team to deliver updates of their microfrontend to the client at any time, without a dependency on a build pipeline. Second, by encapsulating all HTML, CSS, and JavaScript in the <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">Shadow Root</a> of a custom element, we achieve a strong separation of the microfrontend from its environment.</p>
+
+<h2>Frameworks</h2>
+
+<p>There are different frontend frameworks which are more or less suited for building microfrontends. In our case, however, the best framework is no framework. This may seem strange, but the reality is that the native functionality of browsers has become very powerful over the last few years, and as we don’t need to support old browsers anymore, there’s not much missing! Of course, we use libraries for things like <a href="/patterns/localisation/">localisation</a> or other purposes so that we don’t have to reinvent the wheel, but we will think very hard before we decide to use a framework like React that adds a lot of overhead in terms of code and client resource usage.</p>
+
+<p>That said, there are lightweight framework with a reasonable trade-off between developer experience and overhead, such as <a href="https://lit.dev/">Lit Element</a>.</p>
+
+<h2>Curious To Learn More?</h2>
+
+<p>If you would like to learn more about the development of a microfrontend, please have a look at our <a href="/tutorials/realworld-microfrontend/">intro tutorial</a> with a step-by-step walk-through of a real microfrontend.</p>
+
+
+
+
