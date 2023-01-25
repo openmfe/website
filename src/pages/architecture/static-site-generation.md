@@ -2,18 +2,12 @@
 layout: main
 title: Static Site Generation
 priority: 30
-excerpt: With websites that attract millions of visitors each day, cheap and fast generation of web pages is a significant success factor. Static Site Generation (SSG) means that web pages are pregenerated statically once and then deployed to a CDN. SSG is the perfect complement to OpenMFE microfrontends in many cases and a recommended (but not mandatory) pattern.
+summary: With websites that attract millions of visitors each day, cheap and fast generation of web pages is a significant success factor. Static Site Generation (SSG) means that web pages are pregenerated statically once and then deployed to a CDN. SSG is the perfect complement to OpenMFE microfrontends in many cases and a recommended (but not mandatory) pattern.
 ---
 
-# Static Site Generation
+To understand how SSG works, let’s look at how web pages are managed in conventional business websites. Usually, there is some sort of Content Management System (CMS) like WordPress. This CMS has two purposes, the actual administration of editorial content (texts, images, navigation) as well as the rendering of said content into web pages based on templates.
 
-With websites that attract millions of visitors each day, cheap and fast generation of web pages is a significant success factor. Static Site Generation (SSG) means that web pages are pregenerated statically once and then deployed to a CDN. SSG is the perfect complement to OpenMFE microfrontends in many cases and a recommended (but not mandatory) pattern.
-
-## How it works
-
-To understand how SSG works, let’s look at how web pages are managed in conventional business websites. Usually, there is some sort of Content Management System (CMS) such as WordPress, Typo3, Joomla or Hybris. This CMS has two purposes, the actual administration of editorial content (texts, images, navigation) as well as the rendering of said content into web pages based on templates.
-
-This is very convenient, but it also creates several problems, as we will see later. As most content doesn’t change very frequently, we can simply pregenerate pages when necessary and put them onto a static file server or a CDN. The content, in this case, is maintained as plain text files, for example using [Markdown](https://commonmark.org).
+These web pages are generated on each request which is very convenient, but it also creates several problems as we will see later. As most content doesn’t change very frequently, we can simply pregenerate pages when necessary and put them onto a static file server or a CDN. The content, in this case, is maintained as plain text files, for example using [Markdown](https://commonmark.org).
 
 <div class="image">
     <img src="/_assets/images/ssg-simple.webp" alt="">

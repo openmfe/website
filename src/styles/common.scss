@@ -99,6 +99,54 @@ section {
     margin: 2rem auto;
 }
 
+
+.block {
+    max-width: 60rem;
+    margin: 1rem auto;
+    padding: 2rem 1rem;
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.title {
+    background: rgb(189, 234, 245);
+
+    .block {
+        margin-top: 0;
+        padding: 4rem 1rem;
+    }
+
+    h1 {
+        margin-bottom: 1.5rem;
+        font-weight: 300;
+        font-size: 2rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    p {
+        font-weight: 300;
+        font-size: 1.5rem;
+        line-height: 1.5em;
+
+        strong {
+            font-weight: 300;
+        }
+    }
+}
+
+.highlight {
+    background: #f3f3f3;
+
+    h2:first-child {
+        margin-top: 0;
+    }
+}
+
 .group {
     display: flex;
     flex-direction: row;
@@ -204,6 +252,10 @@ main {
 
     .wrapper {
         margin: 3rem auto;
+
+        :first-child {
+            margin-top: 0;
+        }
     }
 }
 

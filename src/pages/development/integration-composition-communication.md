@@ -1,13 +1,11 @@
 ---
 layout: main
-title: Integration and Orchestration
+title: Composition and Orchestration
 priority: 40
-excerpt: OpenMFE microfrontends are stand-alone applications wrapped into a custom element. In order to build larger sites, integration and orchestration must be implemented. This can be done with a thin layer of glue code, also known as the integration layer.
+summary: OpenMFE microfrontends are stand-alone applications wrapped into a custom element. In order to build larger sites, composition and orchestration must be implemented. This can be done with a thin layer of glue code, also known as the integration layer.
 ---
 
-# Integration
-
-## Composition
+## Composition and Configuration
 
 Because OpenMFE relies on browser standards, integrating a microfrontend with others or a host page is very straightforward. It always starts with inserting the web component somewhere on a web page:
 
@@ -20,9 +18,9 @@ Because OpenMFE relies on browser standards, integrating a microfrontend with ot
 
 It might be that this is already enough if the attributes are sufficient to instantiate the microfrontend and its functionality does not need further integration with the host environment.
 
-## Communication
+## Event-based Communication
 
-However, usually a microfrontend will emit events which can be caught and processed by the host page:
+Attributes are used for inbound communication to a microfrontend. For outbound communication, the microfrontend emit events which can be caught and processed by the host page:
 
 ```js
 document.addEventListener(
@@ -57,13 +55,14 @@ mfe1_inst1.setAttribute("first-attribute", JSON.stringify({
 }))
 ```
 
-A microfrontend could even expose a public function for example if it has an internal state that cannot be instantiated through configuration. A typical example would be a shopping basket:
+## Function Calls
+
+Another way for inbound communication are function calls on a microfrontend instance. This is useful when it has an internal state that cannot be instantiated through configuration. A typical example would be a shopping basket:
 
 ```js
 const mfe1_inst1 = document.getElementById("instance-one")
 mfe1_inst1.addItem({ id: 5, qty: 1 })
 ```
-
 
 ## Orchestrating Multiple Microfrontends
 

@@ -3,11 +3,9 @@ layout: main
 title: Quick Hands-on Demo
 data: navigation
 priority: 10
+summary: In order to get you started with browser-native microfrontends, we will first launch a minimalistic demo of a web component to show the basic pattern. This will give you a feeling of what native microfrontends are about, and it will not take more than two minutes. This is not yet a microfrontend, but it will implement the part that developers are least familiar with, the custom element.
+
 ---
-
-# Quick Hands-on Demo
-
-In order to get you started with native microfrontends, we will first launch a minimalistic demo of a web component to show the basic pattern. This will give you a feeling of what native microfrontends are about, and it will not take more than two minutes.
 
 First, create a folder `openmfe-test`, navigate into it, and paste the following snippet into a file named `my-mfe.js`:
 
@@ -70,4 +68,4 @@ Tadaah, your first microfrontend is running! Well, at this point, it is just a s
 
 If you don’t know what web components are, don’t worry—we will discuss the key concepts in the next article. And, you can bookmark [web.dev](https://web.dev/web-components/) and [MDN](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) to dive deeper afterwards.
 
-Now, proceed to the next article, [Understanding Real-world Microfrontends](/tutorials/realworld-microfrontend/).
+Now, proceed to the next article, [Understanding Real-world Microfrontends](/development/microfrontend-deepdive/).

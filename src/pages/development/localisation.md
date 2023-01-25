@@ -2,14 +2,8 @@
 layout: main
 title: Microfrontend Localisation
 priority: 30
-excerpt: Creating multilingual software is not as easy as it might seem, especially in a modular architecture. This article shows how to localise a modular UI component (such as a microfrontend). You will learn about message catalogs, contexts, plurals, date formats and localised layout as well as a lot about human language in general.
+summary: Creating multilingual software is not as easy as it might seem, especially in a modular architecture. This article shows how to localise a modular UI component (such as a microfrontend). You will learn about message catalogs, contexts, plurals, date formats and localised layout as well as a lot about human language in general. By the way, this also works just as well on the backend.
 ---
-
-# Microfrontend Localisation
-
-Creating multilingual software is not as easy as it might seem, especially in a modular architecture. This article shows how to properly translate a user interface modular such as a microfrontend, addressing different aspects of localisation. For this purpose, we will take a little [demo project](https://github.com/lxg/l10n-demo) as a playground. It is based on the [@lxg/l10n](https://github.com/lxg/l10n) library which can be used to localise different types of frontend applications, including microfrontends and static pages.
-
-Please note that this article demonstrates localisation on the frontend only, but the patterns work on the backend just as well.
 
 ## The Demo
 

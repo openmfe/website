@@ -1,13 +1,10 @@
 ---
 layout: main
-title: Microfrontend Building Blocks
+title: Microfrontend Deep Dive
 data: navigation
 priority: 20
+summary: A real-world, native microfrontend is a full-stack web application, and therefore has certain degree of complexity. Let’s have a close look at an example microfrontend to understand the building blocks and how they work together.
 ---
-
-# Microfrontend Building Blocks
-
-A real-world, native microfrontend is a full-stack web application, and therefore has certain degree of complexity. This article will help to understand the building blocks and how they work together.
 
 Note that there are many ways to build microfrontends, this is just one of them. A microfrontend does not have to be OpenMFE-compliant to earn the title, and even when you aim for compliance with the [OpenMFE specification](/architecture/specification), there are many ways to achieve this.
 
@@ -71,7 +68,7 @@ As the microfrontend is compliant with the [OpenMFE specification](/architecture
 
 The project also has a little `./frontend/src/index.html` file. This however is not part of the microfrontend, but just a helper for development. It allows creating a development environment where the microfrontend is embedded into a page.
 
-The development environment contains a little development server, based on [browsersync](https://browsersync.io/), to reload the microfrontend as soon as the code is being changed.
+The development environment comes with a simple web server, based on [browsersync](https://browsersync.io/), to reload the microfrontend as soon as the code is being changed.
 
 ### Build Chain
 

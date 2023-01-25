@@ -2,7 +2,7 @@
 layout: main
 title: Behind the OpenMFE Spec
 priority: 80
-excerpt: The OpenMFE Specification is a standard for building microfrontends. On this page, we explain the thoughts and ideas behind the specification.
+summary: The OpenMFE Specification is a standard for building microfrontends. On this page, we explain the thoughts and ideas behind the specification.
 ---
 
 # Behind the OpenMFE Specification

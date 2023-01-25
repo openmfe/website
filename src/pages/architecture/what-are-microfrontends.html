@@ -2,14 +2,10 @@
 layout: main
 title: What are Microfrontends?
 priority: 10
-excerpt: Microfrontends are a way to build large web applications in a modular way. Each microfrontend is an independent solution for a “business concern”, meaning that it is a self-contained, small application which can be integrated into a web page. This is a very powerful concept to build complex software in a “vertical” way where deliverable artefacts are aligned with business logic rather than technology.
+summary: Microfrontends are a way to build large web applications in a modular way. Each microfrontend is an independent solution for a “business concern”, meaning that it is a self-contained, small application which can be integrated into a web page.
 ---
 
-<h1>What are Microfrontends?</h1>
-
-<p>Microfrontends are a way to build large web applications in a modular way. Each microfrontend is an independent solution for a “business concern”, meaning that it is a self-contained, small application which can be integrated into a web page.</p>
-
-<p>This may not sound impressive, but it is a very powerful concept to build complex software in a “vertical” way where deliverable artefacts are aligned with business logic rather than technology. The opposite would be a “layered” architecture where artefacts are aligned with technical concerns such as frontend, backend, database.</p>
+<p>Microfrontends are more than just user interface modules, in fact they are a very powerful concept to build complex software in a “vertical” way where deliverable artefacts are aligned with business logic rather than technology. The opposite would be a “layered” architecture where artefacts are aligned with technical concerns such as frontend, backend, database.</p>
 
 <p>But before we dive any deeper, let’s have a look at a real-world microfrontend. On the left-hand side, you see a microfrontend that displays the current weather in the <a href="https://en.wikipedia.org/wiki/Aachen">city of Aachen</a>. On the right-hand side is the actual, literal code it takes to embed this microfrontend on <strong>any</strong> webpage.</p>
 
@@ -40,13 +36,13 @@ excerpt: Microfrontends are a way to build large web applications in a modular w
 
 <h2>Backend for Frontend</h2>
 
-<p>It is very important to understand that the microfrontend has a little backend as well. While it does get the actual weather data from the <a href="https://open-meteo.com/">Open-Meteo</a> API, it doesn’t retrieve them from the frontend directly. Instead, there is a little backend service acting as a proxy.</p>
+<p>It is very important to understand that the microfrontend has a little backend as well. While the actual weather data come from the <a href="https://open-meteo.com/">Open-Meteo</a> API, they aren’t retrieved by the frontend directly. Instead, there is a little backend service acting as a proxy.</p>
 
-<p>This pattern is called “Backend for Frontend”, abbreviated as BFF. Indeed, the web component and the BFF are “best friends forever”, because the sole purpose of the BFF is to aggregate and transform data for the frontend. As opposed to traditional APIs that decouple an application from its clients, the BFF decouples the client from the data providers.</p>
+<p>This pattern is called “Backend for Frontend”, abbreviated as BFF. Indeed, the web component and the BFF are “best friends forever”, because the sole purpose of the BFF is to aggregate and transform data for the frontend. As opposed to traditional APIs that decouple a backend application from its clients, the BFF decouples the client from data provider backends.</p>
 
 <p>Note that there is no need for API contracts between the BFF and the client-side. In fact, the API structures between them could change with every increment. Advanced APIs such as REST and GraphQL have no place here, because they only increase the complexity of the payload and require the frontend to do transformations. All transformations should really happen on the server side, and the client side should receive only excactly what it needs.</p>
 
-<p>In the example of the weather microfrontend above, the BFF receives a large JSON object with raw weather data. From that data, the BFF selects only the necessary values, transforms them in a way that is easier to process by the frontend, and caches the result for a few minutes. It would also be able to act as a <a href="https://medium.com/javarevisited/what-is-circuit-breaker-in-microservices-a94f95f5e5ae">circuit breaker</a> in case the original API has an outage.</p>
+<p>In the example of the weather microfrontend above, the BFF receives a large JSON object with raw weather data. From that data, the BFF selects only the necessary values, transforms them in a way that is easier to process by the frontend, and caches the result for a few minutes. It also performs time/timezone transformations which require some heavy lifting and would only decrease performance if done in the frontend due to necessary libraries and computational overhead.</p>
 
 <h2>Building Websites With Microfrontends</h2>
 
@@ -77,13 +73,13 @@ excerpt: Microfrontends are a way to build large web applications in a modular w
 
 <h2>Frameworks</h2>
 
-<p>There are different frontend frameworks which are more or less suited for building microfrontends. In our case, however, the best framework is no framework. This may seem strange, but the reality is that the native functionality of browsers has become very powerful over the last few years, and as we don’t need to support old browsers anymore, there’s not much missing! Of course, we use libraries for things like <a href="/patterns/localisation/">localisation</a> or other purposes so that we don’t have to reinvent the wheel, but we will think very hard before we decide to use a framework like React that adds a lot of overhead in terms of code and client resource usage.</p>
+<p>There are different frontend frameworks which are more or less suited for building microfrontends. In our case, however, the best framework is no framework. This may seem strange, but the reality is that the native functionality of browsers has become very powerful over the last few years, and as we don’t need to support old browsers anymore, there’s not much missing! Of course, we use libraries for things like <a href="/development/localisation/">localisation</a> or other purposes so that we don’t have to reinvent the wheel, but we will think very hard before we decide to use a framework like React that adds a lot of overhead in terms of code and client resource usage.</p>
 
 <p>That said, there are lightweight framework with a reasonable trade-off between developer experience and overhead, such as <a href="https://lit.dev/">Lit Element</a>.</p>
 
 <h2>Curious To Learn More?</h2>
 
-<p>If you would like to learn more about the development of a microfrontend, please have a look at our <a href="/tutorials/realworld-microfrontend/">intro tutorial</a> with a step-by-step walk-through of a real microfrontend.</p>
+<p>If you would like to learn more about the development of a microfrontend, please have a look at our <a href="/development/microfrontend-deepdive/">intro tutorial</a> with a step-by-step walk-through of a real microfrontend.</p>
 
 
 

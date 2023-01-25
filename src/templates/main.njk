@@ -42,17 +42,27 @@
                         {% endfor %}
                     </ul>
                     <p class="social">
-                        <a href="https://github.com/openmfe/" title="Github repository">Github repository</a>
+                        <a href="https://github.com/openmfe/" title="Github repository" target="_blank">Github repository</a>
                     </p>
                 </div>
             </header>
             {% endblock %}
 
             {% block tpl_main %}
-            <main{% if class %} class="{{ class }}"{% endif %}>
-                <div class="wrapper">
-                    {{ content | safe }}
+            <main>
+                <div class="title">
+                    <div class="block">
+                        <h1>{{ h1 or title }}</h1>
+                        {% if summary -%}
+                            <p>{{ summary | safe }}</p>
+                        {%- endif %}
+                    </div>
                 </div>
+                {% block tpl_content %}
+                    <div class="wrapper">
+                        {{ content | safe }}
+                    </div>
+                {% endblock %}
             </main>
             {% endblock %}
 

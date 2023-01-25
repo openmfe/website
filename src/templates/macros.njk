@@ -1,7 +1,7 @@
 {% macro teasers(list) %}
     {%- for slug, item in list.children -%}
         <h2><a href="{{ item.permalink }}">{{ item.title }}</a></h2>
-        <p>{{ item.excerpt }}</p>
+        <p>{{ item.summary }}</p>
     {%- endfor -%}
 {% endmacro %}
 
