@@ -1,11 +1,11 @@
 ---
 layout: main
-title: Understanding Real-world Microfrontends
+title: Microfrontend Building Blocks
 data: navigation
 priority: 20
 ---
 
-# Understanding Real-world Microfrontends
+# Microfrontend Building Blocks
 
 A real-world, native microfrontend is a full-stack web application, and therefore has certain degree of complexity. This article will help to understand the building blocks and how they work together.
 

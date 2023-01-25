@@ -1,7 +1,7 @@
 ---
 layout: main
 title: Static Site Generation
-priority: 20
+priority: 30
 excerpt: With websites that attract millions of visitors each day, cheap and fast generation of web pages is a significant success factor. Static Site Generation (SSG) means that web pages are pregenerated statically once and then deployed to a CDN. SSG is the perfect complement to OpenMFE microfrontends in many cases and a recommended (but not mandatory) pattern.
 ---
 

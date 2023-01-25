@@ -1,7 +1,8 @@
 ---
 layout: main
 title: Integration and Orchestration
-priority: 30
+priority: 40
+excerpt: OpenMFE microfrontends are stand-alone applications wrapped into a custom element. In order to build larger sites, integration and orchestration must be implemented. This can be done with a thin layer of glue code, also known as the integration layer.
 ---
 
 # Integration

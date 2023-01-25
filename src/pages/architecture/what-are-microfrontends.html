@@ -2,13 +2,14 @@
 layout: main
 title: What are Microfrontends?
 priority: 10
+excerpt: Microfrontends are a way to build large web applications in a modular way. Each microfrontend is an independent solution for a “business concern”, meaning that it is a self-contained, small application which can be integrated into a web page. This is a very powerful concept to build complex software in a “vertical” way where deliverable artefacts are aligned with business logic rather than technology.
 ---
 
 <h1>What are Microfrontends?</h1>
 
 <p>Microfrontends are a way to build large web applications in a modular way. Each microfrontend is an independent solution for a “business concern”, meaning that it is a self-contained, small application which can be integrated into a web page.</p>
 
-<p>This may not sound impressive, but it is a very powerful concept to build large-scale web applications in a “vertical” way where deliverable artefacts are aligned with business logic rather than technology. The opposite would be a “layered” architecture where artefacts are aligned with technical concerns such as frontend, backend, database.</p>
+<p>This may not sound impressive, but it is a very powerful concept to build complex software in a “vertical” way where deliverable artefacts are aligned with business logic rather than technology. The opposite would be a “layered” architecture where artefacts are aligned with technical concerns such as frontend, backend, database.</p>
 
 <p>But before we dive any deeper, let’s have a look at a real-world microfrontend. On the left-hand side, you see a microfrontend that displays the current weather in the <a href="https://en.wikipedia.org/wiki/Aachen">city of Aachen</a>. On the right-hand side is the actual, literal code it takes to embed this microfrontend on <strong>any</strong> webpage.</p>
 
@@ -36,6 +37,16 @@ priority: 10
 <p>As you can see, the web component is delivered by a third-party domain. This is not a problem; in fact, it is a huge benefit of this approach: Teams can maintain their own infrastructure and compose microfrontends in the browser. (That said, there are other microfrontend approaches which rely on server-side or build-time composition.)</p>
 
 <p>You might also wonder what the <code>&lt;current-weather&gt;</code> HTML tag and its attributes <code>lat</code> and <code>lon</code> are. This is a so-called <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements">custom element</a>, meaning that we have defined our own custom HTML tag with custom behaviour. This works similar to the better known <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a> tag; basically it is a complex element with embedded user interface logic.</p>
+
+<h2>Backend for Frontend</h2>
+
+<p>It is very important to understand that the microfrontend has a little backend as well. While it does get the actual weather data from the <a href="https://open-meteo.com/">Open-Meteo</a> API, it doesn’t retrieve them from the frontend directly. Instead, there is a little backend service acting as a proxy.</p>
+
+<p>This pattern is called “Backend for Frontend”, abbreviated as BFF. Indeed, the web component and the BFF are “best friends forever”, because the sole purpose of the BFF is to aggregate and transform data for the frontend. As opposed to traditional APIs that decouple an application from its clients, the BFF decouples the client from the data providers.</p>
+
+<p>Note that there is no need for API contracts between the BFF and the client-side. In fact, the API structures between them could change with every increment. Advanced APIs such as REST and GraphQL have no place here, because they only increase the complexity of the payload and require the frontend to do transformations. All transformations should really happen on the server side, and the client side should receive only excactly what it needs.</p>
+
+<p>In the example of the weather microfrontend above, the BFF receives a large JSON object with raw weather data. From that data, the BFF selects only the necessary values, transforms them in a way that is easier to process by the frontend, and caches the result for a few minutes. It would also be able to act as a <a href="https://medium.com/javarevisited/what-is-circuit-breaker-in-microservices-a94f95f5e5ae">circuit breaker</a> in case the original API has an outage.</p>
 
 <h2>Building Websites With Microfrontends</h2>
 
