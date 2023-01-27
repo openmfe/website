@@ -73,7 +73,7 @@ For this purpose, the `@lxg/l10n` library provides the `l10n.x(context, message)
 
 Something that might not be apparent to most (only) English-speaking developers is the fact how complex pluralisation is. The English language is quite simple in this regard: There are two forms, singular and plural (e.g. *car* and *cars*). The singular form is used when it refers to exactly one item, the plural form is used when referring to zero or to more than one item. And, a few exceptions aside, you can create the plural by appending the letter “s” to the singular form.
 
-This is very different in other languages. There are many rules, and even more exceptions, to form the plural of a word. It is practically impossible to express this in a formal way or automate it. Also, many languages have more than one plural form! Did you know, for example, that the [Arabic language has 6 different forms of plurals](https://arabeyes.org/Plural_Forms)?
+This is very different in other languages. There are many rules, and even more exceptions, to form the plural of a word. It is practically impossible to express this in a formal way or automate it. Also, many languages have more than one plural form! Did you know, for example, that the [Arabic language has 6 different forms of plurals](https://understand-arabic.com/2016/03/21/plurals/)?
 
 Speakers of “Western” languages may wonder what all these forms are used for. The answer is that it depends on certain ranges of numbers. For instance, the Russian language has one plural form if the number of items is 2–4 and another one if there are 5 or more items.
 
