@@ -2,12 +2,23 @@
 layout: main
 title: Microfrontend Localisation
 priority: 30
-summary: Creating multilingual software is not as easy as it might seem, especially in a modular architecture. This article shows how to localise a modular UI component (such as a microfrontend). You will learn about message catalogs, contexts, plurals, date formats and localised layout as well as a lot about human language in general. By the way, this also works just as well on the backend.
+summary: Creating multilingual software is not as easy as it might seem, especially in a modular architecture. This article shows how to localise a modular UI component (such as a microfrontend). You will learn about message catalogs, contexts, plurals, date formats and localised layout as well as a lot about human language in general.
 ---
 
-## The Demo
+In this article, we’re going to have a look at localisation of frontends using the [`@lxg/l10n` library](https://github.com/lxg/l10n). In a nutshell, localisation in this context means that the user interface is understood by people in their native languages.
 
-The following table shows different use cases for localised messages. The language can be toggled by clicking the `DE` and `EN` buttons.
+When it comes to software translations, a naive approach might be to create a one-to-one mapping of words and phrases.But there’s much more complexity to it:
+
+- One word in a language often maps to several words in another one, depending on the context.
+- Plurals in many languages underly complex rules, and there are exceptions.
+- Many languages have more than two plural forms.
+- The structure of sentences is different across languages, so placeholders/variables are contextual.
+
+It’s worth noting that localisation goes far beyond translation; it also covers technical and cultural aspects which are not in scope of this article. Also note that all of this works on the backend as well.
+
+## A Quick Demo
+
+Let’s have a look at some use cases for localised messages in the following table. The language can be toggled by clicking the `DE` and `EN` buttons.
 
 <div class="l10n-demo">
     <l10n-demo lang="en-GB"></l10n-demo>
@@ -15,7 +26,7 @@ The following table shows different use cases for localised messages. The langua
 
 ## Local Setup
 
-If you want to install the demo run it on your local machine, execute the following commands in a shell. Fun fact, this is implemented as a web component, so it is pretty close to building a microfrontend; you can basically copy/paste the code into your own project.
+(If you want to install the demo run it on your local machine, execute the following commands in a shell. Fun fact, this is implemented as a web component, so it is pretty close to building a microfrontend; you can basically copy/paste the code into your own project.)
 
 ```shell
 git clone https://github.com/lxg/l10n-demo.git

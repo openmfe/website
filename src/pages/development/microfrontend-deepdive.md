@@ -155,18 +155,15 @@ The backend is deployed to an [AWS Lambda](https://aws.amazon.com/lambda/). As t
 
 ## Conclusions and Further Reading
 
-This tutorial discussed the essential elements of an OpenMFE microfrontend. You are now ready to do your own experiments! You should already have the
+This tutorial discussed the essential elements of an OpenMFE microfrontend. You are now ready to do your own experiments! Check out the example repo (if you haven’t done so already) and use it as a starter for your own project.
 
-To learn more about other aspects of microfrontends and Modular Web Architecture, you can look into the following topics:
+To learn more about other aspects of microfrontends and modular web architecture, you can look into the following topics:
 
 - Testing and QA
 - Logging and monitoring
-- Integration with other microfrontends
-- Integration into a host environment
+- [Integration with other microfrontends and into a host environment](/development/integration-composition-communication/)
 - Authentication and authorisation
-- Performance
-- Search engine optimisation (SEO)
-- Analytics and A/B testing
-- Static Site Generation
+- Performance and Search engine optimisation (SEO)
+- Web Analytics and A/B testing
+- [Static Site Generation](/architecture/static-site-generation/)
 
-As we extend our information, we will provide articles on them. So, stay tuned!
