@@ -7,7 +7,7 @@ summary: Microfrontends are a way to build large web applications in a modular w
 
 <p>Microfrontends are more than just user interface modules, in fact they are a very powerful concept to build complex software in a “vertical” way where deliverable artefacts are aligned with business logic rather than technology. The opposite would be a “layered” architecture where artefacts are aligned with technical concerns such as frontend, backend, database.</p>
 
-<p>But before we dive any deeper, let’s have a look at a real-world microfrontend. On the left-hand side, you see a microfrontend that displays the current weather in the <a href="https://en.wikipedia.org/wiki/Aachen">city of Aachen</a>. On the right-hand side is the actual, literal code it takes to embed this microfrontend on <strong>any</strong> webpage.</p>
+<p>But before we dive any deeper, let’s have a look at a real-world microfrontend. On the left-hand side, you see a microfrontend that displays the current weather at a given geolocation. On the right-hand side is the actual, literal code it takes to embed this microfrontend on <strong>any</strong> webpage. Try it out!</p>
 
 <section class="group">
     <div class="mfe">
@@ -17,6 +17,7 @@ summary: Microfrontends are a way to build large web applications in a modular w
     <div>
 {% markdown %}
 ```html
+<!-- Weather in Aachen, Germany -->
 <current-weather
     lat="50.776334"
     lon="6.083706"
@@ -29,8 +30,6 @@ summary: Microfrontends are a way to build large web applications in a modular w
 {% endmarkdown %}
     </div>
 </section>
-
-<p><strong>Try it out! Place this code on any web page.</strong></p>
 
 <p>As you can see, the web component is delivered by a third-party domain. This is not a problem; in fact, it is a huge benefit of this approach: Teams can maintain their own infrastructure and compose microfrontends in the browser. (That said, there are other microfrontend approaches which rely on server-side or build-time composition.)</p>
 
