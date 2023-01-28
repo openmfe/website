@@ -18,6 +18,7 @@ module.exports = function(eleventyConfig) {
 
 
     eleventyConfig.addPlugin(openmfe, {
+        // manifest: 'http://localhost:9081/openmfe/manifest.yaml'
         manifest: 'https://demos.lxg.de/current-weather/frontend/openmfe/manifest.yaml'
     })
 
