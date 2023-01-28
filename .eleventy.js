@@ -4,6 +4,7 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
 const Markdown = require("markdown-it")
 const Prism = require("prismjs")
 const YAML = require("yaml")
+const openmfe = require('@openmfe/eleventy-plugin');
 require(`prismjs/components/prism-yaml.js`)
 
 module.exports = function(eleventyConfig) {
@@ -14,6 +15,11 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addWatchTarget('./src/styles')
     eleventyConfig.addPlugin(syntaxHighlight)
     eleventyConfig.setLibrary("md", Markdown({ html: true }).disable("code"))
+
+
+    eleventyConfig.addPlugin(openmfe, {
+        manifest: 'https://demos.lxg.de/current-weather/frontend/openmfe/manifest.yaml'
+    })
 
     // BEGIN custom markdown and highlighter for MFE catalog
         const hightlighter = (code, lang) => Prism.languages[lang]

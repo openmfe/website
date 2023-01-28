@@ -15,6 +15,8 @@ Most parts of a website don’t have to be rendered dynamically on the client si
 
 
 
+- dedicated prerendering page
+
 ## Avoiding overhead
 
 Most of them are not unique to microfrontends, but as we often have multiple microfrontends on one web page and even do
@@ -33,7 +35,8 @@ Do not:
 
 - Caching
     - headers
-    -
+    - query string cache buster
+
 
 - HTTP/3
 - Demystifying HTTP/2: There is no push (a word about a technique that has been hyped for no good reason)

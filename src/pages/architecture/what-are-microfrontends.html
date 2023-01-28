@@ -11,8 +11,7 @@ summary: Microfrontends are a way to build large web applications in a modular w
 
 <section class="group">
     <div class="mfe">
-        <current-weather lat="50.776334" lon="6.083706"></current-weather>
-        <script src="https://dgyodetmk4834.cloudfront.net/main.js" async></script>
+        {% openmfe "current-weather", { lat: 50.776334, lon: 6.083706 }, { semantic: true } %}
     </div>
     <div>
 {% markdown %}
