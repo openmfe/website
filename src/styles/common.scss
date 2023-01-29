@@ -1,28 +1,15 @@
 :root {
-    /* default colors */
-    --color-default: #00c8eb;
-    --color-default-light: #b8e9f1;
-    --color-default-dark: #00879e;
-    --color-default-foreground: #00a8c6;
-    --color-default-foreground-hover: #00687a;
-    --color-default-background: #bef6ff;
-    --color-default-background-hover: #97ecfa;
-    --color-contrast: #eb7d07;
-    --color-contrast-dark: #9e4700;
     --base-font-size: 1rem;
-    --base-font-family: nunito, Arial, sans-serif;
-    --color-theme-base-lighter: #eee;
 }
 
 * {
     margin: 0;
     padding: 0;
     font-weight: 400;
-    font-family: var(--base-font-family);
+    font-family: nunito, Arial, sans-serif;
     line-height: 1em;
     font-style: normal;
     box-sizing: border-box;
-    color: #444;
 }
 
 strong {
@@ -58,6 +45,7 @@ p,
 ul,
 table,
 li {
+    color: #444;
     font-family: var(--base-font-family);
     font-size: var(--base-font-size);
     margin: 0 0 0.8rem;
@@ -111,7 +99,7 @@ section {
 }
 
 .title {
-    background: rgb(189, 234, 245);
+    background: #bdeaf5;
 
     .block {
         margin-top: 0;
@@ -174,7 +162,7 @@ section {
 
     h2 {
         font-size: 1.5rem;
-        font-weight: 500;
+        font-weight: 400;
     }
 }
 
@@ -201,21 +189,14 @@ img {
     }
 }
 
-// fix for UI lib bug
-b,
-strong,
-span,
-i,
-em {
-    font-family: var(--base-font-family);
+a, a:link, a:visited {
+    color: #444;
+    text-decoration: underline;
 }
 
-// fix for UI lib bug
 a:hover,
 a:focus {
-    text-decoration: underline;
-    box-shadow: none;
-    transition: none;
+    color: #000
 }
 
 table {
@@ -300,7 +281,10 @@ pre {
     border-radius: 3px;
     background-color: #f5f2f0;
     padding: 1em;
-    margin: .5em 0;
+
+    &[class*=language-] {
+        margin: 1em 0;
+    }
 
     code,
     code span,

@@ -28,6 +28,13 @@ header {
         box-shadow: none;
     }
 
+    img {
+        height: 20px;
+        width: 25px;
+        display: inline-block;
+        margin-right: 0.6rem;
+    }
+
     p, ul, li {
         margin: 0;
         padding: 0;
@@ -36,11 +43,6 @@ header {
     p {
         display: flex;
         align-items: center;
-
-        img {
-            display: inline-block;
-            margin-right: 0.6rem;
-        }
 
         span {
             font-weight: bold;
@@ -75,13 +77,13 @@ header {
                 border-top: none;
                 border-left: var(--menu-chevron-size) solid transparent;
                 border-right: var(--menu-chevron-size) solid transparent;
-                border-bottom: var(--menu-chevron-size) solid var(--color-theme-base-lighter);
+                border-bottom: var(--menu-chevron-size) solid #eee;
                 margin-top: 0.4rem;
             }
 
             ul {
-                background: var(--color-theme-base-lighter);
-                border: 1px solid var(--color-theme-base-light);
+                background: #eee;
+                border: 1px solid #ccc;
                 border-top: 0;
                 position: absolute;
                 z-index: 10;

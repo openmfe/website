@@ -1,4 +1,3 @@
-// @import "../../node_modules/prismjs/themes/prism";
 @import "../../node_modules/prism-themes/themes/prism-vsc-dark-plus";
 
 $version: unique-id();
@@ -7,4 +6,3 @@ $font-url-base: "/_assets/fonts";
 @import "./fonts";
 @import "./common";
 @import "./header";
-@import "./home";
