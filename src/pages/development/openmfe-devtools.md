@@ -1,7 +1,7 @@
 ---
 layout: main
 title: OpenMFE Devtools
-priority: 50
+priority: 80
 summary: OpenMFE is not prescriptive when it comes to the “how” of your implementation. But to ensure contract validity and integrity as well as runtime compliance, we are providing some development tools.
 ---
 
