@@ -129,17 +129,17 @@ section {
 
 .highlight {
     background: #f3f3f3;
-
-    h2:first-child {
-        margin-top: 0;
-    }
 }
 
 .group {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
+
+    h2:first-child {
+        margin-top: 0;
+    }
 
     > :only-child {
         width: 100%;

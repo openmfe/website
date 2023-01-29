@@ -12,7 +12,8 @@ summary: OpenMFE is an <strong>open standard</strong> for building <strong>porta
     </div>
     <div>
         <h2>What are Microfrontends?</h2>
-        <p>Microfrontends are a way to build large websites in a modular way. Each microfrontend is an independent solution for a “business concern”, meaning that it is a self-contained, small application which can be integrated into, and orchestrated by, a web page. This allows distributing the development across multiple independent teams and build software in a “vertical” way.</p>
+        <p>A microfrontend is a self-contained, small application which can be easily integrated into a web page as a UI component.</p>
+        <p>Microfrontends can be used as stand-alone solutions, but also to build large websites in a modular way. This allows distributing the development across multiple independent teams and dramatically increase their agility.</p>
         <p><a href="/architecture/what-are-microfrontends/">Learn more</a></p>
     </div>
 </section>
@@ -25,10 +26,9 @@ summary: OpenMFE is an <strong>open standard</strong> for building <strong>porta
 
             <p>On the right-hand side, you see how this works in practice: The microfrontend itself is just a <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements">custom element</a> plus one line of JavaScript to load it. With a few lines of code, understood by any common browser, OpenMFE microfrontends can be integrated into any webpage.</p>
 
-            <p>Each microfrontend comes with a YAML-based manifest file which formally describes the microfrontend’s configuration and event APIs. This manifest file is the <em>contract</em> of the microfrontend, and describes the ways to interact with the microfrontend in a formal way.</p>
+            <p>Each microfrontend comes with a YAML-based manifest file which formally describes the microfrontend’s configuration and event APIs. This manifest file is the <strong>contract</strong> of the microfrontend, it formally describes how to interact with the microfrontend.</p>
 
             <p><a href="/architecture/what-are-microfrontends/">Learn more</a></p>
-
         </div>
         <div>
 {% markdown %}
@@ -80,6 +80,6 @@ attributes:
 
     <div>
         <h3>Interface Contracts</h3>
-        <p>Any inbound or outbound messaging must be publically documented in an <em>interface contract</em>, meaning that each microfrontend specifies its attributes and events upfront. By entering such a contract and guaranteeing not to break it (in the sense of semantic versioning), updates can be rolled out at any time without the integrating environment even knowing. For specifying the interface contract, OpenMFE defines a manifest standard, similar to OpenAPI/Swagger.</p>
+        <p>Any inbound or outbound messaging must be publically documented in an <strong>interface contract</strong>, meaning that each microfrontend specifies its attributes and events upfront. By entering such a contract and guaranteeing not to break it (in the sense of semantic versioning), updates can be rolled out at any time without the integrating environment even knowing. For specifying the interface contract, OpenMFE defines a manifest standard, similar to OpenAPI/Swagger.</p>
     </div>
 </section>
