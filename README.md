@@ -1,4 +1,4 @@
-# openmfe.org
+# OpenMFE Website
 
 This is the repository for the OpenMFE documentation site.
 
