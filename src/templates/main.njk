@@ -3,6 +3,25 @@
     <head>
         <title>{% block tpl_title %} OpenMFE · {{ title }}{% endblock %}</title>
         {% block tpl_head %}
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Article",
+                "headline": "{{ title }}",
+                "abstract": "{{ summary }}",
+                "datePublished": "{{ page.date.toISOString() }}",
+                {% if image %}
+                      "image": "{{ image }}",
+                {% endif %}
+                "teaches": "Microfrontends",
+                "isFamilyFriendly": true,
+                "author": [{
+                    "@type": "Person",
+                    "name": "Alexander Günsche",
+                    "url": "https://lxg.de/"
+                }]
+            }
+            </script>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <link rel="stylesheet" href="/_assets/css/main.css">
@@ -17,7 +36,7 @@
             <header>
                 <div class="wrapper">
                     <p>
-                        <img src="/_assets/images/icon.svg" width="32" height="26">
+                        <img src="/_assets/images/icon.svg" width="32" height="26" alt="">
                         <span>OpenMFE</span>
                     </p>
                     <ul class="main">
