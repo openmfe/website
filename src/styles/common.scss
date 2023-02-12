@@ -137,6 +137,10 @@ section {
     align-items: center;
     justify-content: space-between;
 
+    .columns {
+        align-items: flex-start;
+    }
+
     h2:first-child {
         margin-top: 0;
     }
