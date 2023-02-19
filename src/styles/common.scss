@@ -137,7 +137,7 @@ section {
     align-items: center;
     justify-content: space-between;
 
-    .columns {
+    &.columns {
         align-items: flex-start;
     }
 
