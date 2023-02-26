@@ -2,12 +2,12 @@
 layout: main
 title: Microfrontend Performance
 priority: 25
-summary: Great performance and search engine optimisation are important for any website. With client-side microfrontends, this can be a bit challenging. So, let’s discuss how we can even outperform other approaches with the right techniques.
+summary: Great performance is important for the user experience of any web application. With microfrontends, it is especially important to be diligent, because mistakes and bad practices multiply. Luckily, there are lots of areas for optimisation.
 ---
 
 ## What is “Good Performance”?
 
-We all know how bad UI performance feels sluggish and unnerving. But how to define, achieve, and measure *good* performance? A fair starting point is probably to avoid the things we perceive as “bad”. So, make sure the site loads fast and responds instantly to interaction. For this purpose, Google have defined performance indicators called [“web vitals”](https://web.dev/vitals/). We will not go into details here; it is however strongly suggested to familiarise with them. To measure performance, use tools like Site Speed and Lighthouse.
+We all know how bad UI performance feels sluggish and unnerving. But how to define, achieve, and measure *good* performance? A fair starting point is probably to avoid the things we perceive as “bad”. So, to make sure the site loads fast and responds instantly to interaction. For this purpose, Google have defined performance indicators called [“web vitals”](https://web.dev/vitals/). We will not go into details here; it is however strongly suggested to familiarise with them. To measure performance, use tools like Site Speed and Lighthouse.
 
 ## Technical Optimisation
 
@@ -17,7 +17,7 @@ When optimising performance for good user experience as indicated by web vitals,
 
 Being resourceful is a trade-off with convenience. There are great technologies that make developers more effective and which reduce risk and mental load. But at the same time, they can add a lot of overhead to the software.
 
-- **Frameworks** that are designed single-page applications can be used as stand-alone modules as well. But often they add a lot of features to your code that is unnecessary in that context. Also, the architectural design decisions and trade-offs are made for stand-alone use cases.
+- **Frameworks** that are designed for single-page applications can be used for stand-alone modules as well. But often they add a lot of features to your code that is unnecessary in that context. Also, the architectural design decisions and trade-offs are made for stand-alone use cases. If you use a framework at all, use one that is lightweight and fit for purpose, such as [Lit](https://lit.dev/).
 
 - There are tons of **libraries** that you can build into your project which solve a problem in an elegant way that might otherwise take hours or days to code yourself. However, many libraries suffer from feature creep, and you might be using only a few percent of the code that now is built into your project. Adding a library to a project, especially if it becomes a runtime dependency, needs to be a very conscious decision.
 
@@ -48,7 +48,7 @@ The HTTP protocol, in all versions, provides several techniques for caching:
 
 #### HTTP Push and Preload
 
-HTTP Push has been a much anticipated feature of HTTP/2, promising that if the browser would request a resource, the server could automatically push secondary resources as well. For this purpose, the [`Link`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link) header has been introduced, and according to the protocol specification, the secondary downloads should be immediately initiated when receiving this header. While this generally did work, the concept [turned out to be flawed](https://www.ctrl.blog/entry/http2-push-chromium-deprecation.html), and HTTP Push is effectively dead.
+HTTP Push had been a much anticipated feature of HTTP/2, promising that if the browser would request a resource, the server could automatically push secondary resources as well. For this purpose, the [`Link`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link) header had been introduced, and according to the protocol specification, the secondary downloads should be immediately initiated when receiving this header. While this generally did work, the concept [turned out to be flawed](https://www.ctrl.blog/entry/http2-push-chromium-deprecation.html), and HTTP Push is effectively dead.
 
 By the way, the hype around Push unfortunately created the myth that code splitting would be a good idea with HTTP/2 in general, which is not true. Yes, multiplexing allows parallel downloads over the same connection, but it needs to be initiated by the client side. And if the code is split in a way that all chunks are needed anyway, splitting only causes delays. In most cases, it is better to deliver one larger artefact than several small ones.
 
@@ -81,6 +81,8 @@ Skeletons are placeholders for deferred web content, their purpose is to guarant
     </div>
 </my-microfrontend>
 ```
+
+
 
 This placeholder can be handcrafted, but every OpenMFE microfrontend is expected to provide a prerendering API endpoint which should provide suitable content. The prerendering endpoint is expected to accept the same parameters as query strings as the frontend accepts as attributes. This allows creating matching prerendered content for a certain configuration of microfrontend.
 
