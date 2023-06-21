@@ -44,7 +44,7 @@ In the `constructor()` function, you see that we are initialising a “shadow ro
 
 #### Rendering
 
-Normally, a web component would also have a `connectedCallback()` method which is called as soon as the custom element is injected into the host document. However, our microfrontend uses the `_render()` method instead, and rather than listening to DOM insertion, it is fired when the `region` attribute is set and the data are fetched from the backend. The reason is that a rendering at DOM injection wouldn’t make sense, as there is nothin to render anyway until we have data. The `_render()` method does two things: First, it inserts the CSS and the HTML to the shadow DOM, and it attaches event listeners to the newly generated DOM.
+Normally, a web component would also have a `connectedCallback()` method which is called as soon as the custom element is injected into the host document. However, our microfrontend uses the `_render()` method instead, and rather than listening to DOM insertion, it is fired when the `region` attribute is set and the data are fetched from the backend. The reason is that a rendering at DOM injection wouldn’t make sense, as there is nothing to render anyway until we have data. The `_render()` method does two things: First, it inserts the CSS and the HTML to the shadow DOM, and it attaches event listeners to the newly generated DOM.
 
 {#
     #### Styles
@@ -151,7 +151,7 @@ As mentioned previously, we are running our applications on AWS, preferably on �
 
 For the client-side, we are using an S3 bucket to store the web component and related assets. They will be delivered to the client via a Cloudfront distribution. In order to allow the Cloudfront distribution to access the S3 bucket, the frontend also contains an “Origin Access Identity” (OAI) and a policy to authorise the OAI to actually access the bucket. If you don’t know what this means at the moment, don’t worry.
 
-The backend is deployed to an [AWS Lambda](https://aws.amazon.com/lambda/). As the Lambda itself does not “speak” the HTTP protocoll, it is exposed to the internet as a webservice via an [AWS API Gateway](https://aws.amazon.com/api-gateway/).
+The backend is deployed to an [AWS Lambda](https://aws.amazon.com/lambda/). As the Lambda itself does not “speak” the HTTP protocol, it is exposed to the internet as a webservice via an [AWS API Gateway](https://aws.amazon.com/api-gateway/).
 
 ## Conclusions and Further Reading
 
