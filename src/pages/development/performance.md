@@ -23,7 +23,7 @@ Being resourceful is a trade-off with convenience. There are great technologies 
 
 - **Transpilation** is what we call the process of transforming code in a way that it is compatible with other runtime environments. In the days of Internet Explorer, we used to transpile our nice ES6 code to the ES5 standard to make it cross-browser compliant. This is not necessary anymore; current browsers are mature and evolve fast enough to support relevant JavaScript features without the need of translation. However, these days, we see transpilation mainly with Typescript and with framework-specific languages or constructs; the prime example being JSX. Yes, they add a lot of value during development. But the code they produce has significant overhead in terms of volume and runtime resources.
 
-- **Polyfills**: Similar to transpilation, polyfills help with backwards compability for browsers. But instead of translating the syntax, they add API features of the browser in a transparent way. Same as transpilation, polyfills are not needed in most cases today and should only be added seletively in edge cases.
+- **Polyfills**: Similar to transpilation, polyfills help with backwards compatibility for browsers. But instead of translating the syntax, they add API features of the browser in a transparent way. Same as transpilation, polyfills are not needed in most cases today and should only be added seletively in edge cases.
 
 Of course, we don’t need to do everything from scratch, even with a lightweight mindset, we can use tools like Rollup to bundle and optimise our artefacts.
 
@@ -52,7 +52,7 @@ HTTP Push had been a much anticipated feature of HTTP/2, promising that if the b
 
 By the way, the hype around Push unfortunately created the myth that code splitting would be a good idea with HTTP/2 in general, which is not true. Yes, multiplexing allows parallel downloads over the same connection, but it needs to be initiated by the client side. And if the code is split in a way that all chunks are needed anyway, splitting only causes delays. In most cases, it is better to deliver one larger artefact than several small ones.
 
-The good news is that the `Link` header has survived. Push may be dead, but [preloading hints](https://www.keycdn.com/blog/http-preload-vs-http2-push) have almost the same effect. The way this works is that the response to the primary ressource (e.g. an HTML page) contains the `Link` header which suggests to download the indicated resources.
+The good news is that the `Link` header has survived. Push may be dead, but [preloading hints](https://www.keycdn.com/blog/http-preload-vs-http2-push) have almost the same effect. The way this works is that the response to the primary resource (e.g. an HTML page) contains the `Link` header which suggests to download the indicated resources.
 
 ```http
 Link: </styles.css?hash=23e7da>; rel=preload; as=style,</main.js?hash=f12b65>; rel=preload; as=script

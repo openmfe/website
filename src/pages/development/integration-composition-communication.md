@@ -114,4 +114,4 @@ results.setAttribute("inbound-date", params.get("in"))
 
 ### State Machines
 
-It may be tempting to use state machines and related mechanisms such as Redux to orchestrate mutiple microfrontends. This is theoretically possible, but as a microfrontend must not actively listen to changes in its environment, there would have to be a wrapper for each microfrontend that attaches it to the global state mechanism. In most cases, this is too much overhead; use your judgement to determine if it’s worth it.
+It may be tempting to use state machines and related mechanisms such as Redux to orchestrate multiple microfrontends. This is theoretically possible, but as a microfrontend must not actively listen to changes in its environment, there would have to be a wrapper for each microfrontend that attaches it to the global state mechanism. In most cases, this is too much overhead; use your judgement to determine if it’s worth it.
