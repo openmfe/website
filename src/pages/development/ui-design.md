@@ -27,7 +27,7 @@ There are a few more things to be aware of when styling the microfrontend.
 
 - It is however a valid pattern to expose toggles for different UI configurations as attributes. But it is recommended to keep them to a minimum and don’t let them become too fine-grained. For example, toggles for dark/light mode or simple/complex views are a good idea; button arrangements not so much.
 
-- Do not use `rem` as a unit inside the microfrontend, because it always depends on the root font size of the host page. Choosing `px` as unit is an appropriate choice here.
+- Avoid `rem` inside the microfrontend, because it depends on the host page’s root font size. Use `px`; for a component that must adapt to its container, the container-query length units `cqi`/`cqw` are a better fit, since they are relative to the microfrontend’s own box rather than the page.
 
 - Custom fonts have to be loaded via the `FontFace` API. The [Microfrontend Deep-dive](/development/microfrontend-deepdive/) page explains in more detail why this is and how this works.
 
@@ -35,4 +35,4 @@ There are a few more things to be aware of when styling the microfrontend.
 
 Usually, responsive layout refers to the entire web page. CSS offers [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) to determine the dimensions of the viewport. However, a microfrontend is usually only embedded into a part of the page, and knowing viewport dimensions doesn’t help to determine the available space.
 
-Therefore, a microfrontend must be responsive on the container level. The [Current Weather microfrontend](https://github.com/openmfe/current-weather) shows how this works: The microfrontend itself watches the size of its bounding container, and based on its dimensions, it gives itself a certain CSS class. In the corresponding CSS, the images and text of the microfrontend are have relative sizes based on the `--base` variable.
+Therefore, a microfrontend must be responsive on the container level. The [Current Weather microfrontend](https://github.com/openmfe/current-weather) shows one way: it watches the size of its bounding container and sets a CSS class accordingly, and its CSS sizes images and text relative to a `--base` variable. Modern CSS [container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries), using `container-type` with `@container` and the `cqi`/`cqw` units, now provide this container-relative behaviour natively, often without any JavaScript.

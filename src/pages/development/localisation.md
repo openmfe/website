@@ -56,7 +56,7 @@ msgstr "Hallo Welt"
 
 After the translators did their jobs, the message catalog is being “compiled” to a *translation table* in a machine-readable format. The `@lxg/l10n` library uses JSON for this.
 
-**Wait a second, why do we have multiple translation files—the PO catalogs and the `translations.json`?**
+**Wait a second, why do we have multiple translation files, the PO catalogs and the `translations.json`?**
 
 It may seem redundant to maintain the messages in a PO catalog file and afterwards create a JSON file. Why aren’t the translations put into the JSON file directly?
 

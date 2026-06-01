@@ -21,7 +21,7 @@ Being resourceful is a trade-off with convenience. There are great technologies 
 
 - There are tons of **libraries** that you can build into your project which solve a problem in an elegant way that might otherwise take hours or days to code yourself. However, many libraries suffer from feature creep, and you might be using only a few percent of the code that now is built into your project. Adding a library to a project, especially if it becomes a runtime dependency, needs to be a very conscious decision.
 
-- **Transpilation** is what we call the process of transforming code in a way that it is compatible with other runtime environments. In the days of Internet Explorer, we used to transpile our nice ES6 code to the ES5 standard to make it cross-browser compliant. This is not necessary anymore; current browsers are mature and evolve fast enough to support relevant JavaScript features without the need of translation. However, these days, we see transpilation mainly with Typescript and with framework-specific languages or constructs; the prime example being JSX. Yes, they add a lot of value during development. But the code they produce has significant overhead in terms of volume and runtime resources.
+- **Transpilation** rewrites code to run on environments that lack newer language features. Current browsers support the relevant JavaScript features directly, so this is rarely needed for compatibility today; where you still see it is with TypeScript and framework-specific syntax such as JSX, which add value during development but produce output with overhead in volume and runtime cost.
 
 - **Polyfills**: Similar to transpilation, polyfills help with backwards compability for browsers. But instead of translating the syntax, they add API features of the browser in a transparent way. Same as transpilation, polyfills are not needed in most cases today and should only be added seletively in edge cases.
 
@@ -46,13 +46,11 @@ The HTTP protocol, in all versions, provides several techniques for caching:
 
 “Soft” caching is when the server doesn’t tell the client to keep the file in the local cache but instead provides a fingerprint as part of the response (the [“Etag”](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag)). On subsequent requests, the browser passes the fingerprint is passed as [“If-Match”](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Match) header. Should the fingerprint still match, the server responds with a 304 (“Not modified”) status code and an empty body. This should be used in scenarios where hard caching isn’t possible, so that even as a request/response roundtrip is necessary, it will be fast.
 
-#### HTTP Push and Preload
+#### Preload Hints
 
-HTTP Push had been a much anticipated feature of HTTP/2, promising that if the browser would request a resource, the server could automatically push secondary resources as well. For this purpose, the [`Link`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link) header had been introduced, and according to the protocol specification, the secondary downloads should be immediately initiated when receiving this header. While this generally did work, the concept [turned out to be flawed](https://www.ctrl.blog/entry/http2-push-chromium-deprecation.html), and HTTP Push is effectively dead.
+The HTTP `Link` header lets a response hint at secondary resources the client should fetch early. Its predecessor, HTTP/2 Server Push, was [removed from browsers](https://www.ctrl.blog/entry/http2-push-chromium-deprecation.html), but [preload hints](https://www.keycdn.com/blog/http-preload-vs-http2-push) achieve almost the same effect: the response to the primary resource, such as an HTML page, carries a `Link` header pointing at the resources to load next.
 
-By the way, the hype around Push unfortunately created the myth that code splitting would be a good idea with HTTP/2 in general, which is not true. Yes, multiplexing allows parallel downloads over the same connection, but it needs to be initiated by the client side. And if the code is split in a way that all chunks are needed anyway, splitting only causes delays. In most cases, it is better to deliver one larger artefact than several small ones.
-
-The good news is that the `Link` header has survived. Push may be dead, but [preloading hints](https://www.keycdn.com/blog/http-preload-vs-http2-push) have almost the same effect. The way this works is that the response to the primary ressource (e.g. an HTML page) contains the `Link` header which suggests to download the indicated resources.
+A related caution: do not reflexively split code for HTTP/2. Multiplexing allows parallel downloads over one connection, but when all chunks are needed anyway, splitting only adds round-trips, so one larger artefact is usually better than several small ones.
 
 ```http
 Link: </styles.css?hash=23e7da>; rel=preload; as=style,</main.js?hash=f12b65>; rel=preload; as=script
@@ -86,7 +84,7 @@ Skeletons are placeholders for deferred web content, their purpose is to guarant
 
 This placeholder can be handcrafted, but every OpenMFE microfrontend is expected to provide a prerendering API endpoint which should provide suitable content. The prerendering endpoint is expected to accept the same parameters as query strings as the frontend accepts as attributes. This allows creating matching prerendered content for a certain configuration of microfrontend.
 
-The ideal output of the prerendering endpoint very much depends on the use case of the microfrontend. It is definitely an opportunity for adding SEO-relevant content into the page—but at the same time, it can get stale if the page isn’t refreshed frequently (which is not unusual with [Static Site Generation](/architecture/static-site-generation/)).
+The ideal output of the prerendering endpoint very much depends on the use case of the microfrontend. It is definitely an opportunity for adding SEO-relevant content into the page, but at the same time it can get stale if the page isn’t refreshed frequently (which is not unusual with [Static Site Generation](/architecture/static-site-generation/)).
 
 From a technical perspective, the prerendered output must be simple HTML with inline CSS. JavaScript is not allowed because it could potentially interfere with the host page, which is can cause side effects and security issues. CSS `<style>` blocks are not allowed, because the HTML specification does not allow them in the body of an HTML document. You can however use SVG, even with animations.
 

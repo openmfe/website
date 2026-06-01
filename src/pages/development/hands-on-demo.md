@@ -66,6 +66,6 @@ npx serve .
 
 Tadaah, your first microfrontend is running! Well, at this point, it is just a simple web component.
 
-If you don’t know what web components are, don’t worry—we will discuss the key concepts in the next article. And, you can bookmark [web.dev](https://web.dev/web-components/) and [MDN](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) to dive deeper afterwards.
+If you don’t know what web components are, don’t worry, we will discuss the key concepts in the next article. And, you can bookmark [web.dev](https://web.dev/web-components/) and [MDN](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) to dive deeper afterwards.
 
 Now, proceed to the next article, [Understanding Real-world Microfrontends](/development/microfrontend-deepdive/).

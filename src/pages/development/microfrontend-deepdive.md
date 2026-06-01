@@ -14,7 +14,7 @@ We will go through the code of a [demo microfrontend](https://github.com/openmfe
 
 ```shell
 git clone https://github.com/openmfe/demo-microfrontend
-cd microfrontend
+cd demo-microfrontend
 ./dev.sh
 ```
 
@@ -24,7 +24,7 @@ You should now be able to open the microfrontend demo in your browser under [htt
 
 If you look at the repository, you will find that the microfrontend contains a `frontend` and a `backend` folder.
 
-Wait a second—backend? Yes! A microfrontend, being a self-contained stack, also needs some server-side functionality. This is a little service (deployed as container or <abbr title="Function as a service">FaaS</abbr>) that helps the client-side part with things like authorisation against external APIs, aggregating data from different sources, caching generic content, and transforming data so it can be easier processed by the client-side code (e.g. removing unneeded data to make the transmission more efficient and not expose more data than necessary).
+Wait a second, backend? Yes! A microfrontend, being a self-contained stack, also needs some server-side functionality. This is a little service (deployed as container or <abbr title="Function as a service">FaaS</abbr>) that helps the client-side part with things like authorisation against external APIs, aggregating data from different sources, caching generic content, and transforming data so it can be easier processed by the client-side code (e.g. removing unneeded data to make the transmission more efficient and not expose more data than necessary).
 
 The microfrontend repository also contains configuration for <abbr title="Continuous Integration and Continuous Delivery">CI/CD</abbr> and “Infrastructure as Code”. As the microfrontend is hosted on Github, we are using Github Actions for CI/CD. The infrastructure is hosted on <abbr title="Amazon Web Services">AWS</abbr>, this is why the repo contains a `cloudformation.yml` file with the infrastructure specification. We will discuss CI/CD and IaC later.
 
@@ -32,9 +32,9 @@ The microfrontend repository also contains configuration for <abbr title="Contin
 
 ### The Web Component
 
-The client-side part of our microfrontend is found in the [`./frontend/src/main.js`](https://github.com/openmfe/demo-microfrontend/blob/main/frontend/src/main.js) file. It is a [web component](https://developer.mozilla.org/en-US/docs/Web/Web_Components), a “custom element” to be precise. A custom element is an HTML element that we can define ourselves via JavaScript. It is basically a class derived from `HTMLElement` with a few lifecycle callbacks. This is a pattern that you probably know from frameworks such as React or Stencil. But here it is, native in your browser!
+The client-side part of our microfrontend is found in the [`./frontend/src/main.js`](https://github.com/openmfe/demo-microfrontend/blob/main/frontend/src/main.js) file. It is a [web component](https://developer.mozilla.org/en-US/docs/Web/Web_Components), a “custom element” to be precise. A custom element is an HTML element that we can define ourselves via JavaScript. It is a class derived from `HTMLElement` with a few lifecycle callbacks, a pattern familiar from frameworks such as React or Lit, except that here the browser provides it natively.
 
-By using native browser technology, we can build very lightweight components—no framework needed. This is why the production build is less than 1.8kb on the wire (minified/zipped)!
+Because we rely on native browser technology, the components stay lightweight without a framework; the production build of this example is under 2 kB on the wire, minified and compressed.
 
 The web component is listens to changes on its attributes. This happens through the static `observedAttributes()` method. It will just return an array with the known attributes, in this case only `region`. This is complemented by the `attributeChangedCallback(name, oldValue, newValue)` method which will be triggered as soon as a value is set or changed.
 
@@ -54,7 +54,7 @@ Normally, a web component would also have a `connectedCallback()` method which i
 
 #### Events
 
-The microfrontend emits several events to its environment. There are generally two types of events, those that are used for integration and those that server analytics/tracking purposes. Technically, there is no big difference, they both are implemented as [Custom Events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent). Integration events can use whatever name and payload structure they want to serve their purpose. Analytics events are expected to always have the `openmfe.analytics` event name and have a predefined payload structure, as described in the [OpenMFE specification](/architecture/specification) section 5.7.
+The microfrontend emits several events to its environment. There are generally two types of events, those that are used for integration and those that server analytics/tracking purposes. Technically, there is no big difference, they both are implemented as [Custom Events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent). Integration events can use whatever name and payload structure they want to serve their purpose. Analytics events are expected to always have the `openmfe.analytics` event name and have a predefined payload structure, as described in the [OpenMFE specification](/architecture/specification) section 5.8.
 
 #### Fonts
 
@@ -76,14 +76,14 @@ We don’t use a framework for the web component here (and in most cases, you wo
 
 In our example, Rollup, together with a few plugins, takes care of the following:
 
-- Minifying the JavaScript code (rollup-plugin-terser)
-- Minifying the template literal string that contains our HTML and CSS (rollup-plugin-minify-html-literals).
+- Minifying the JavaScript code (@rollup/plugin-terser)
+- Minifying the template literal string that contains our HTML and CSS (rollup-plugin-minify-html-literals-v3).
 - Inject URLs into JavaScript code (@rollup/plugin-replace).
 - Copy static files to the `dist` folder, and inject URLs (rollup-plugin-copy).
 
 In more complex projects you might need something to resolve Node dependencies as well, in which case the [@rollup/plugin-node-resolve](https://www.npmjs.com/package/@rollup/plugin-node-resolve) become handy.
 
-What you should NOT do is transpilation and polyfilling. Transpilation is the process of translating your JavaScript code to an earlier level of syntax of the language to support older browsers. Polyfilling means that you provide extra functionality which is not present in older browsers. These techniques have been helpful in the past, but should be considered as anti-patterns nowadays, because they create a lot of overhead. Now that Internet Explorer is dead and Edge uses the Chromium rendering engine, all browsers have decent support for recent JavaScript syntax and APIs. Therefore you should write your code natively at a reasonable level of the language right away.
+What you should not do is transpile or add polyfills. Both were useful when older browsers lagged behind the language, but current browsers support recent JavaScript syntax and APIs well, so these techniques now mostly add overhead. Write your code natively against a reasonable language level instead.
 
 ## The Backend (Server-side)
 
@@ -122,19 +122,17 @@ The reason why we’re using Express as a dev server is that it is easy to set u
 
 ## CI/CD Pipeline
 
-The CI/CD pipeline of this example project is built on Gitlab CI. We won’t cover the details of Gitlab CI here, it’s just important to know a few basics: Each microfrontend has its dedicated pipeline which lives with the project in a `.gitlab-ci.yml` file. This is a standard file type by Gitlab, containing *stages* and *job* along which a project is being integrated. You will usually have build, test and deployment tasks configured in such a pipeline file. Based on certain [rules](https://docs.gitlab.com/ee/ci/yaml/#rules) and [events](https://docs.gitlab.com/ee/ci/yaml/#when), for example when a commit to the repository is made, the pipeline executes the jobs it contains.
-
-Looking at the pipeline configuration of our example project, you will see that it has a `build` and a `deploy` stage.
+Each microfrontend carries its own pipeline alongside the project. Because the repository is on GitHub, this example uses GitHub Actions, with the workflow living in `.github/workflows`. A pipeline of this kind has build, test and deployment jobs that run on events such as a commit to the main branch. For this example we keep it to a `build` and a `deploy` stage.
 
 ### The Build Stage
 
-The `build` stage contains one job which is also named `build`. Apart from a few Gitlab-specific fields, it contains several shell commands to build the artefact.
+The `build` stage runs the shell commands that produce the artefacts.
 
 What’s noteworthy here is that the `__FRONTEND_URL__`  and `__BACKEND_URL__` placeholders are not replaced with the real values, but basically with themselves. Why is that? When we *build* the artefact, we don’t know about the target environment yet. Therefore, we can only set those values during the deployment. But as we are deploying to a static server, we cannot work with environment variables. Therefore, we simply keep the static placeholders in the code and just do a string replacement during the deployment. This may seem a bit dirty, but it works reliably and avoids the overhead of having to load an extra configuration file.
 
 ### The Deployment Stage
 
-The `deploy` stage has two jobs, `deploy_nonprod` and `deploy_prod`. They both are very similar, so that in fact they mostly inherit from the `.deploy` [“hidden” job](https://docs.gitlab.com/ee/ci/jobs/#hide-jobs) and only set some configuration.
+The `deploy` stage handles non-production and production deployments, which share almost all of their configuration.
 
 The following things happen during the deployment:
 

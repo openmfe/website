@@ -1,0 +1,22 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# OpenMFE
+
+> OpenMFE is an open standard for building portable, retrofittable microfrontends with browser-native technology, strong encapsulation, and a formal, machine-readable interface contract (a YAML manifest modelled on OpenAPI).
+
+A microfrontend is a self-contained custom element plus a small backend (BFF) that serves its data, a mandatory prerender endpoint, and an optional semantic (JSON-LD) endpoint. The manifest declares the component's attributes (input) and events (output) as a versioned contract that both human teams and coding agents can build and integrate against.
+
+## Specification
+- [OpenMFE specification](https://github.com/openmfe/specification/blob/main/specification.md): the normative rules a compliant microfrontend must follow.
+- [Manifest JSON Schema](https://github.com/openmfe/manifest/blob/main/lib/schema.json): the schema the manifest is validated against.
+
+## Build a microfrontend
+- [seed repository](https://github.com/openmfe/seed): a minimal working example plus an AGENTS.md that guides a coding agent through building a compliant microfrontend.
+- [Devtools](https://openmfe.org/development/openmfe-devtools/): the manifest validator, the contract-history checker, and the runtime checker used to verify a microfrontend against its contract.
+
+## Key pages
+- [What are microfrontends?](https://openmfe.org/architecture/what-are-microfrontends/)
+- [OpenMFE and AI agents](https://openmfe.org/architecture/agentic-development/)
+- [Why and when to use OpenMFE](https://openmfe.org/architecture/why-and-when-openmfe/)

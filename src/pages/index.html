@@ -3,7 +3,7 @@ layout: home
 title: Portable Microfrontends with API Contracts
 h1: OpenMFE – Portable Microfrontends with API Contracts
 priority: 10
-summary: OpenMFE is an open standard for building portable and retrofittable microfrontends with browser-native technology, strong encapsulation and clearly defined interfaces.
+summary: OpenMFE is an open standard for building portable and retrofittable microfrontends with browser-native technology, strong encapsulation and clearly defined interfaces. It goes well with agentic development.
 image: /_assets/images/home.svg
 ---
 
@@ -15,7 +15,7 @@ image: /_assets/images/home.svg
         <h2>What is a Microfrontend?</h2>
         <p>A microfrontend is a self-contained, small application which can be easily integrated into a web page as a UI component.</p>
         <p>Microfrontends can be used as stand-alone solutions, but they are also great for building entire websites in a modular way.</p>
-        <p>Microfrontends allow distributing web development across multiple independent teams, thereby dramatically increasing agility and accelerating delivery.</p>
+        <p>Microfrontends let independent teams own and ship parts of a large application without coordinating every release, which is where their agility comes from.</p>
         <p><a href="/architecture/what-are-microfrontends/">Learn more</a></p>
     </div>
 </section>
@@ -72,7 +72,7 @@ attributes:
 <section class="block group columns">
     <div>
         <h2>Browser-native</h2>
-        <p>Frameworks are not necessary to build microfrontends, and often they undermine the tenets of this architectural approach. Teams are supposed to design, build, and run microfrontends independently, but frameworks tend to impose build mechanisms or shared state—which leads to tight coupling and implicit dependencies. OpenMFE relies on native web components and browser events.</p>
+        <p>Frameworks are not necessary to build microfrontends, and often they undermine the tenets of this architectural approach. Teams are supposed to design, build, and run microfrontends independently, but frameworks tend to impose build mechanisms or shared state, which leads to tight coupling and implicit dependencies. OpenMFE relies on native web components and browser events.</p>
     </div>
 
     <div>
@@ -83,5 +83,14 @@ attributes:
     <div>
         <h2>Interface Contracts</h2>
         <p>Any inbound or outbound messaging must be publically documented in an <strong>interface contract</strong>, meaning that each microfrontend specifies its attributes and events upfront. By entering such a contract and guaranteeing not to break it (in the sense of semantic versioning), updates can be rolled out at any time without the integrating environment even knowing. For specifying the interface contract, OpenMFE defines a manifest standard, similar to OpenAPI/Swagger.</p>
+    </div>
+</section>
+
+
+<section class="block group">
+    <div>
+        <h2>A Contract Machines Can Read</h2>
+        <p>Because the contract is a formal, machine-readable document, it is not only other teams that rely on it. A coding agent can read a microfrontend’s manifest to learn how to embed and drive it, and it can scaffold a new microfrontend against the same rules, which the validator and runtime checker then verify. The discipline that lets independent teams work without coordinating is what lets developers and their agents build against a microfrontend with confidence.</p>
+        <p><a href="/architecture/agentic-development/">Learn more</a></p>
     </div>
 </section>
